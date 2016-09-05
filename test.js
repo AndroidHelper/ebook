@@ -40,7 +40,7 @@ request.get(option.url).charset('gbk').end(function(err, res){
 
                     });
                 }else{
-                    book.insert({id:(n-3),title:title,content:arr[1]});
+                    book.insert({id:(n-3),name:'我要做皇帝',title:title,content:arr[1]});
                 }
 
             });
