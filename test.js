@@ -1,6 +1,9 @@
 /**
  * Created by TangentGuo on 16/9/5.
  */
+//mongod.exe --dbpath "C:\Program Files\MongoDB\data"
+
+
 const fs = require('fs');
 const charset = require('superagent-charset');
 const request = require('superagent');
@@ -29,6 +32,11 @@ request.get(option.url).charset('gbk').end(function(err, res){
             //fs.appendFile('txt/我要当皇帝.txt',title+''+(n-3)+'\n\r', function (err) {});
             request.get('http://www.piaotian.net/html/6/6309/'+url).charset('gbk').end(function(err, res){
                 //var $ = cheerio.load(res.text);
+                if(err){
+                    console.log(err);
+                    log('http://www.piaotian.net/html/6/6309/'+url+' 抓取失败\n');
+                    return;
+                }
                 var txt = res.text;
                 var regx =/[\n\r]+&nbsp;&nbsp;&nbsp;&nbsp;([\w\W]+)<\/div>[\n\r]+<!-- 翻页上AD开始 -->/g;
                 var arr = regx.exec(txt);
@@ -36,9 +44,7 @@ request.get(option.url).charset('gbk').end(function(err, res){
                 var time = moment().format('YYYY-DD-MM hh:mm:ss');
                 if(!arr){
                     console.log(title+'没有匹配到');
-                    fs.appendFile('txt/我要当皇帝.txt',title+'   没有匹配到\n', function (err) {
-
-                    });
+                    log(title+'   没有匹配到\n');
                 }else{
                     book.insert({id:(n-3),name:'我要做皇帝',title:title,content:arr[1]});
                 }
@@ -50,3 +56,10 @@ request.get(option.url).charset('gbk').end(function(err, res){
     });
 });
 
+
+
+function log(str){
+    fs.appendFile('txt/我要当皇帝.txt',str, function (err) {
+        console.log(err);
+    });
+}
