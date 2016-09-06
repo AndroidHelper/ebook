@@ -4,7 +4,7 @@
 extends layout
 block content
    h1= data.title
-   .content!= data.content
+   .content!= data.content.replace(/&nbsp;/g,'')
       .page
          a(href=':'+(data.id-1)) pre
          a(href=':'+(data.id+1)) next
