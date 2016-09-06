@@ -14,13 +14,18 @@ router.get('/', function(req, res, next) {
 });
 //文章列表
 router.get('/:id', function(req, res, next) {
-	console.log(req.params.id);
+	//console.log(req.params.id);
 	var id = req.params.id.substr(1);
-	console.log(id);
-    req.db.king.findById(id,function (err,result) {
-       if(err) console.log(err);
-       res.render('bookContent', { title:result.title,data:result });
-    });
+    //req.db.king.findById(id,function (err,result) {
+    //   if(err) console.log(err);
+    //   res.render('bookContent', { title:result.title,data:result });
+    //});
+
+    req.db.king.find({id:parseInt(id)}).toArray(function (err,result) {
+        var result = !err&&result.length>0?result:[{title:'没有此章',content:''}];
+        //console.log(result);
+        res.render('bookContent', { title:result[0].title,data:result[0] });
+    })
     
 });
 

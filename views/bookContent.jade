@@ -1,0 +1,10 @@
+//
+   Created by TangentGuo on 16/9/6.
+
+extends layout
+block content
+   h1= data.title
+   .content!= data.content
+      .page
+         a(href=':'+(data.id-1)) pre
+         a(href=':'+(data.id+1)) next
