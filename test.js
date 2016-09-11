@@ -2,7 +2,7 @@
  * Created by TangentGuo on 16/9/5.
  */
 //mongod.exe --dbpath "C:\Program Files\MongoDB\data"
-
+//.\mongod.exe --logpath "C:\Program Files\MongoDB\logs\log.txt" --logappend --dbpath "C:\Program Files\MongoDB\data" --directoryperdb --serviceName MongoDB -install
 
 const fs = require('fs');
 const charset = require('superagent-charset');

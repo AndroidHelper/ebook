@@ -8,3 +8,17 @@ block content
       .page
          a(href=':'+(data.id-1)) pre
          a(href=':'+(data.id+1)) next
+
+   script.
+      window.addEventListener("keydown", function (event) {
+         //console.log(event);
+         if(event.code == 'ArrowRight'){
+            var link = $('.page a').eq(1).attr('href');
+            location.href = link;
+         }
+
+         if(event.code == 'ArrowLeft'){
+            var link = $('.page a').eq(0).attr('href');
+            location.href = link;
+         }
+      });
