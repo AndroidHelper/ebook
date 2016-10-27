@@ -6,8 +6,8 @@ block content
    h1= data.title
    .content!= data.content.replace(/&nbsp;/g,'')
       .page
-         a(href=':'+(data.id-1)) pre
-         a(href=':'+(data.id+1)) next
+         a(href=':'+(data.id-1)+'?name='+data.name) pre
+         a(href=':'+(data.id+1)+'?name='+data.name) next
 
    script.
       window.addEventListener("keydown", function (event) {

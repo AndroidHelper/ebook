@@ -5,4 +5,4 @@ block content
 		-each item in data
 			li
 				//span= item.id
-				a(href=':'+item.id)= item.title
+				a(href=':'+item.id+'?name='+item.name)= item.title
